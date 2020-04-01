@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E7 Module</title>
+
+    <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body style = 'margin:5px;font-size:20px'>
+    <ul>
+    {% for key, value in post.items() %}
+        {% if key == 'message'%}
+            <li> {{key}} ({{post['message_len']}}) : {{ value }}</li>
+        {% elif key == 'tags'%}
+            <li> {{key}} ({{post['tags_len']}}) : {{ value }}</li>
+        {% elif key == 'tags_len' or key == 'message_len' %}
+        {% elif key != 'tags_len' or key != 'message_len' %}
+            <li> {{key}} : {{ value }}</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
+    <form action = "{{ post['link'] }}" method = "POST">
+        <p>Message <input type = "text" name = "message" /></p>
+        <p>Tags <input type = "text" name = "tags" /></p>
+        <p><input type = "submit" class="btn btn-success" value = "Обновить пост" /></p>
+    </form>
+    <p><a href = "http://localhost:5000/" class="btn btn-primary">Главная</a></p>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+</body>
+</html>
